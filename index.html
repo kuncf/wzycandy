@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperYa!</title>
+    <style>
+        *{
+            margin: 0px;
+            height: 0px;
+        }
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+    background-color: rgb(231, 73, 0);
+    display: flex;
+    background-image: url('BACKFONT.png');
+    overflow: hidden;
+}
+.yaBox{
+    position:fixed;
+    top: 0;
+    width: 100%;
+    height: 500px;
+    margin: auto;
+    display: flex;
+    padding-top: 400px;
+}
+.Font{
+    width: 100%;
+    height: 100%;
+    /* background-image: url('BACKFONT.png');  */
+    background-size:contain;
+    background-position-y: -40px;
+}
+img{
+    width: 100%;
+    height: auto;
+    position:fixed;
+    top: 10%;
+}
+.yan{
+    transition-duration: 0.4s;
+}
+
+.tang{
+    position:fixed;
+    width: 30%;
+    left: 580px;
+    top:1031px;
+}
+    </style>
+</head>
+<body >
+    <div class="Font"></div>
+    <div class="yaBox">
+<div style="width: 100%;margin: auto;top: 400px;">
+<img src="yan.png" class="yan" alt="">
+<img class="Face" src="ya.png" alt="">
+<img src="tang.png" id="tang" class="tang" alt="">
+</div>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script>
+console.log(this.window.innerWidth);
+console.log(this.window.innerHeight);
+
+var Ww=this.window.innerWidth;
+var Wh=this.window.innerHeight;
+var s1='';
+var s2='';
+//获取屏幕高宽
+function GetMouse(oEvent)
+     {
+       x=oEvent.pageX;
+       y=oEvent.pageY;
+       console.log(x)
+     
+if(x>Ww/2)
+{
+    s1='右';
+    $('.yan').css('left','1.2%')
+}
+else
+{
+  
+    s1="左";
+    $('.yan').css('left','-1%')
+}
+if(y>Wh/2)
+{
+    s2='下';
+    $('.yan').css('top','10.7%')
+}
+else
+{
+    s2="上";
+    $('.yan').css('top','9.5%')
+}
+$('#tang').css('margin-top',y+"px;");
+$('#tang').css('top',y+"px;");
+document.getElementById("tang").style.top=y-(Wh*0.06)+"px";
+document.getElementById("tang").style.left=x-(Ww*0.15)+"px";
+if(x/Ww>=0.39&&x/Ww<0.7&&y/Wh>=0.20&&y/Wh<0.5)
+       {
+        $('.yan').css('left','0px');
+        $('.yan').css('top','10%')
+       }
+console.log(s1+s2);
+    }
+this.window.onmousemove=function(){GetMouse(event);}
+
+
+this.window.addEventListener( 'touchmove' ,  function (event) {
+   
+      // 如果这个元素的位置内只有一个手指的话
+     if  (event.targetTouches.length == 1) {
+　　　　// 阻止浏览器默认事件，重要 
+         var  touch = event.targetTouches[0];
+
+GetMouse(touch);
+
+         // 把元素放在手指所在的位置
+       
+         }
+},  false );
+    </script>
+
+</body>
+</html>
